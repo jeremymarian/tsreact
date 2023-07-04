@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import  * as Interfaces  from '@/Interfaces';
-import {useSelector} from 'react-redux'
+import * as Interfaces from '@/Interfaces';
+import { useSelector } from 'react-redux';
 import { AppStore } from '@/redux/Store/store';
 import {
   CardContent,
@@ -10,19 +10,19 @@ import {
   Button,
   Input,
 } from '@mui/material';
-import {addFav, delFav} from '@/redux/Store/states/Favorites';
-import {useDispatch} from 'react-redux';
+import { delFav } from '@/redux/Store/states/Favorites';
+import { useDispatch } from 'react-redux';
 
 interface IHomeProps {}
 
 const Home: React.FC<IHomeProps> = () => {
-  const dispatch = useDispatch()
-    const favoritesPer = useSelector((state:AppStore) => state.favorites)
+  const dispatch = useDispatch();
+  const favoritesPer = useSelector((state: AppStore) => state.favorites);
 
   const dataRen = favoritesPer.map((p, i) => {
-    const handleDeleteFavorite = ()=>{
-      dispatch(delFav(p))
-    }
+    const handleDeleteFavorite = () => {
+      dispatch(delFav(p));
+    };
     return (
       <div>
         <Card key={p.id} sx={{ minWidth: 275 }}>
@@ -42,7 +42,9 @@ const Home: React.FC<IHomeProps> = () => {
               <br />
               {p.setor}
               <CardActions>
-                <Button color='warning' onClick={handleDeleteFavorite}>Delete</Button>
+                <Button color="warning" onClick={handleDeleteFavorite}>
+                  Delete
+                </Button>
               </CardActions>
             </Typography>
           </CardContent>
@@ -50,7 +52,6 @@ const Home: React.FC<IHomeProps> = () => {
       </div>
     );
   });
-
 
   return (
     <div style={{ minWidth: '99vw', maxWidth: '30vw', minHeight: '100vw' }}>
